@@ -1,0 +1,15 @@
+.fab {
+    margin: 10px;
+}
+
+.child {
+    display: inline-flex;
+    position: relative;
+}
+
+.root:focus {
+    transform:scale(1.1);
+    transform:rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
