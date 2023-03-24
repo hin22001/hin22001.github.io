@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppBar, Container, Toolbar, Typography, Box } from '@mui/material'
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import { Home } from './sections'
+import { Home, TechStack } from './sections'
 import { Stack } from '@mui/system';
 
 const lightTheme = createTheme({ palette: { mode: 'light' } });
@@ -21,6 +21,7 @@ const App = (props) => {
             </Container>
           </AppBar>
           <Home />
+          <TechStack />
         </Stack>
 
     </ThemeProvider>

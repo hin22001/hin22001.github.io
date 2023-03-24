@@ -9,3 +9,17 @@
     color: #0066cc;
     margin: 0rem 1rem;
 }
+.avatar {
+    position: absolute;
+    top: 100px;
+    left: 130px;
+}
+.avatar-background {
+    filter: blur(100px);
+}
+.hero-image-div {
+    position: relative;
+}
+.home-box {
+    background-color: #ededed;
+}

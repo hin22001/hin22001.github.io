@@ -3,6 +3,7 @@ import Typed from 'typed.js'
 import { Typography, Stack, Avatar, Box, Container, Chip } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2';
 import blueTexture from '../../assets/blue-texture.png'
+import avatar from '../../assets/avatar.png'
 import { GitHub, LinkedIn } from '@mui/icons-material';
 import './Home.css'
 
@@ -30,7 +31,7 @@ const Home = (props) => {
 
   return (
     <section>
-      <Box bgcolor="background.default">
+      <Box className="home-box">
         <Container>
           <Grid container>
             <Grid xs={6} paddingTop="200px">
@@ -49,9 +50,11 @@ const Home = (props) => {
                 </Stack>
               </Stack>
             </Grid>
-            <Grid xs={6}>
-              <img src={blueTexture} height={600}/>
+            <Grid xs={6} className="hero-image-div">
+              <img src={blueTexture} height={700} className="avatar-background" />
+              <img src={avatar} height={400} className="avatar" />
             </Grid>
+            
           </Grid>
         </Container>
       </Box>
