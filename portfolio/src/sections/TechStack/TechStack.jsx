@@ -1,13 +1,12 @@
 import React from 'react'
 import { Box, Container } from '@mui/material'
-import terraform from '../../assets/terraform-icon-svgrepo-com.svg'
-import jenkins from '../../assets/jenkins.svg'
-import k8s from '../../assets/k8s.svg'
-import docker from '../../assets/docker.svg'
-import grafana from '../../assets/grafana.svg'
-import helm from '../../assets/helm.svg'
-import ansible from '../../assets/ansible.svg'
+import { TechStackCard } from '../../components'
+import TechStackSVG from '../../assets/tech-stack-svg'
+import CertificateCard from '../../components/CertificateCard/CertificateCard'
 import './TechStack.css'
+
+console.log(TechStackSVG)
+console.log(Object.entries(TechStackSVG))
 
 const TechStack = (props) => {
 
@@ -16,13 +15,9 @@ const TechStack = (props) => {
       <Box className="tech-stack-box">
         <Container>
           <h3>Tech-Stack</h3>
-          <img src={terraform} height={150} />
-          <img src={jenkins} height={150} />
-          <img src={k8s} height={150} />
-          <img src={docker} height={150} />
-          <img src={grafana} height={150} />
-          <img src={helm} height={150} />
-          <img src={ansible} height={150} />
+          {Object.entries(TechStackSVG).map(([title, imageSrc]) => (
+            <TechStackCard imageSrc={imageSrc} title={title} key={title} />
+          ))}
         </Container>
       </Box>
     </section>
