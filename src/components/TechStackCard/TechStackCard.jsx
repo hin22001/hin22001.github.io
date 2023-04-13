@@ -1,17 +1,16 @@
 import './TechStackCard.css'
+import { Paper, Grid } from '@mui/material'
 
-const TechStackCard = (props) => {
+const TechStackCard = ({ image }) => {
 
-  const { imageSrc, title } = props
+  const handleClick = () => {
+    
+  }
 
   return (
-    <div className="tech-stack-div">
-      <div>
-        <img src={imageSrc} className="tech-stack-img" />
-        <br />
-        <h2>{title}</h2>
-      </div>
-    </div>
+    <Paper className="tech-stack-card" elevation={1} onClick={handleClick}>
+      <img className="tech-stack-card-img" src={image} />
+    </Paper>
   )
 }
 

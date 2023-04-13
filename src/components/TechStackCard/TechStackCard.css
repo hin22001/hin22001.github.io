@@ -1,13 +1,8 @@
-.tech-stack-div {
-    display: inline-flex;
-    margin: 10px;
+.tech-stack-card {
+    padding: 24px;
 }
 
-.tech-stack-div > div {
-    text-align: center;
-}
-
-.tech-stack-img {
-    height: 150px;
-    padding: 1.5rem;
+.tech-stack-card-img {
+    max-width: 100%;
+    max-height: 100%;
 }
