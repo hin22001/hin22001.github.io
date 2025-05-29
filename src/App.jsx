@@ -1,6 +1,7 @@
 import React from 'react'
 import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import { BrowserRouter as Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Router, Link } from 'react-router-dom';
+import { Portfolio, NotFound } from './pages';
 
 const lightTheme = createTheme({ palette: { mode: 'light' } });
 
@@ -10,12 +11,12 @@ const App = (props) => {
 
   return (
     <ThemeProvider theme={lightTheme}>
-      <Router>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Portfolio />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </Router>
+      </BrowserRouter>
     </ThemeProvider>
   )
 }
