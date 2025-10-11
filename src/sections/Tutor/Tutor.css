@@ -1,0 +1,56 @@
+.tutor-section {
+  padding: 2rem;
+}
+
+.tutor-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+}
+
+.tutor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.period {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.achievements {
+  list-style-type: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.achievements li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.achievements li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #1a73e8;
+}
+
+.tech-stack {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.tech-badge {
+  background: #e8f0fe;
+  color: #1a73e8;
+  padding: 0.25rem 0.75rem;
+  border-radius: 16px;
+  font-size: 0.875rem;
+}

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Home, TechStack } from '../sections'
+import { Home, TechStack, Project, Tutor, Experience } from '../sections'
 import { Stack } from '@mui/system'
 import { AppBar, Container, Toolbar, Typography, Box } from '@mui/material'
 
@@ -17,7 +17,9 @@ const Portfolio = (props) => {
 			</Container>
 			</AppBar>
 			<Home />
-			<TechStack />
+			<Experience />
+			<Project />
+			<Tutor />
 		</Stack>
 	)
 }
