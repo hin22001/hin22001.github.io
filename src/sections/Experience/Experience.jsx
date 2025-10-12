@@ -37,7 +37,7 @@ const Experience = () => {
       </div>
       <div className="timeline">
         {experiences.map((exp, index) => (
-          <div key={index} className="experience-card">
+          <div key={index} className={`experience-card ${index % 2 === 0 ? 'left' : 'right'}`}>
             <div className="experience-content">
               <div className="role-header">
                 <h3>{exp.title}</h3>

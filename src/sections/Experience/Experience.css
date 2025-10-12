@@ -31,31 +31,74 @@
 .timeline::before {
   content: '';
   position: absolute;
-  left: 0;
+  left: 50%;
   top: 0;
   bottom: 0;
   width: 2px;
   background-color: #e0e0e0;
+  transform: translateX(-50%);
 }
+
 
 .experience-card {
   position: relative;
+  width: calc(50% - 30px);
   margin-bottom: 2rem;
 }
 
-/* Remove timeline-marker class and use ::before on experience-card */
+.experience-card.left {
+  left: 0;
+}
+
+.experience-card.right {
+  left: 50%;
+  margin-left: 30px;
+}
+
 .experience-card::before {
   content: '';
   position: absolute;
-  left: -2rem;
-  top: 2rem;
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background-color: #1a73e8;
-  border: 2px solid white;
+  border: 3px solid white;
   z-index: 1;
-  margin-left: -6px;
+  top: 2rem;
+  transform: translateX(50%); /* Added for right alignment */
+}
+
+.experience-card.left::before {
+  right: -15px; /* Adjusted from -36px */
+}
+
+.experience-card.right::before {
+  left: -46px; /* Adjusted from -36px */
+  transform: translateX(-50%); /* Added for left alignment */
+}
+
+/* Adjust media query for mobile responsiveness */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 0;
+  }
+
+  .experience-card {
+    width: calc(100% - 30px);
+    margin-left: 30px;
+  }
+
+  .experience-card.left,
+  .experience-card.right {
+    left: 0;
+    margin-left: 30px;
+  }
+
+  .experience-card.left::before,
+  .experience-card.right::before {
+    left: -31px;
+    transform: translateX(-50%);
+  }
 }
 
 .experience-content {
