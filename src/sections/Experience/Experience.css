@@ -25,7 +25,6 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  padding-left: 2rem;
 }
 
 .timeline::before {
@@ -48,11 +47,12 @@
 
 .experience-card.left {
   left: 0;
+  margin-right: 30px;
 }
 
 .experience-card.right {
-  left: 50%;
-  margin-left: 30px;
+  left: calc(50% + 30px);
+  margin-left: 0;
 }
 
 .experience-card::before {
@@ -65,16 +65,16 @@
   border: 3px solid white;
   z-index: 1;
   top: 2rem;
-  transform: translateX(50%); /* Added for right alignment */
 }
 
 .experience-card.left::before {
-  right: -15px; /* Adjusted from -36px */
+  right: -31px; /* Changed from -46px to -31px to align with timeline */
+  transform: translateX(50%);
 }
 
 .experience-card.right::before {
-  left: -46px; /* Adjusted from -36px */
-  transform: translateX(-50%); /* Added for left alignment */
+  left: -31px; /* Changed from -46px to -31px for consistency */
+  transform: translateX(-50%);
 }
 
 /* Adjust media query for mobile responsiveness */
