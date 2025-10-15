@@ -1,5 +1,6 @@
 import React from 'react';
 import './Experience.css';
+import { motion } from 'framer-motion';
 
 const Experience = () => {
   const experiences = [
@@ -29,15 +30,43 @@ const Experience = () => {
     }
   ];
 
+  const cardVariants = {
+    offscreen: {
+      y: 50,
+      opacity: 0
+    },
+    onscreen: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        duration: 1.5
+      }
+    }
+  };
+
   return (
-    <section className="experience-section">
-      <div className="experience-header">
+    <section>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="experience-header"
+      >
         <h2>Professional Experience</h2>
         <p className="subtitle">A journey of continuous learning and impactful contributions</p>
-      </div>
+      </motion.div>
       <div className="timeline">
         {experiences.map((exp, index) => (
-          <div key={index} className={`experience-card ${index % 2 === 0 ? 'left' : 'right'}`}>
+          <motion.div
+            key={index}
+            className={`experience-card ${index % 2 === 0 ? 'left' : 'right'}`}
+            initial="offscreen"
+            whileInView="onscreen"
+            viewport={{ once: true, amount: 0.8 }}
+            variants={cardVariants}
+          >
             <div className="experience-content">
               <div className="role-header">
                 <h3>{exp.title}</h3>
@@ -57,7 +86,7 @@ const Experience = () => {
                 </ul>
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

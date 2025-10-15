@@ -8,18 +8,22 @@ const Portfolio = (props) => {
 	const {} = props
 
 	return (
-		<Stack>
-			<AppBar component="nav" color="transparent" enableColorOnDark elevation={0}>
-			<Container>
-				<Toolbar style={{ paddingLeft: 0 }}>
-				<span>Ryan's Portfolio</span>
-				</Toolbar>
-			</Container>
+		<Stack spacing={4}>
+			<AppBar position="static" component="nav" color="transparent" enableColorOnDark elevation={0}>
+				<Container>
+					<Toolbar style={{ paddingLeft: 0 }}>
+					<span>Ryan's Portfolio</span>
+					</Toolbar>
+				</Container>
 			</AppBar>
-			<Home />
-			<Experience />
-			<Project />
-			<Tutor />
+			<Box>
+				<Container>
+					<Home />
+					<Experience />
+					<Project />
+					<Tutor />
+				</Container>
+			</Box>
 		</Stack>
 	)
 }
