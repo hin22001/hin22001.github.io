@@ -14,6 +14,7 @@ const App = (props) => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Portfolio />} />
+          {/* <Route path="/fund" element={<Fund />} /> */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
