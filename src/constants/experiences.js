@@ -2,7 +2,7 @@ const EXPERIENCES = [
   {
     id: 1,
     role: "Technical Consultant (Developer)",
-    company: "TechCorp Systems",
+    company: "Team-C Limited",
     period: "2019-06 - 2021-11",
     highlights: [
       "Consulting &amp; implementation Services to enable success on Digital Transformation initiatives",
