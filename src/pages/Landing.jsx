@@ -1,12 +1,12 @@
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { useMediaQuery } from "react-responsive";
-import { Computers } from "./Computers";
-import { Room } from "./Room";
+import { Computers } from "../components";
 import { useEffect, useRef } from "react";
+import './Landing.css'
 
 
-const HeroExperience = (props) => {
+const Landing = (props) => {
   
   const isTablet = useMediaQuery({ query: '(max-width: 1024px)' });
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });  
@@ -91,4 +91,4 @@ const HeroExperience = (props) => {
     </Canvas>
   );
 }
-export default HeroExperience;
+export default Landing;

@@ -1,4 +1,5 @@
-export { default as Home } from './Hero/Hero.jsx'
+export { default as Hero } from './Hero/Hero.jsx'
 export { default as Project } from './Project/Project.jsx'
 export { default as Tutor } from './Tutor/Tutor.jsx'
 export { default as Experience } from './Experience/Experience.jsx'
+export { default as TechStack } from './TechStack/TechStack.jsx'

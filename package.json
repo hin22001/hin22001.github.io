@@ -26,7 +26,8 @@
     "react-router-dom": "^7.6.1",
     "tailwindcss": "^4.1.16",
     "three": "^0.181.0",
-    "typed.js": "^2.0.132"
+    "typed.js": "^2.0.132",
+    "lucide-react": "^0.562.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

@@ -7,11 +7,57 @@ Source: https://sketchfab.com/3d-models/old-computers-7bb6e720499a467b8e0427451d
 Title: Old Computers
 */
 
-import React from 'react'
 import { useGLTF } from '@react-three/drei'
+import { useEffect, useState, useRef } from 'react'
 
-export function Computers (props) {
+const Computers = (props) => {
   const { nodes, materials } = useGLTF('/models/old_computers.glb')
+  const [blinkState, setBlinkState] = useState({})
+  const intervalsRef = useRef({})
+
+  useEffect(() => {
+    const screenMeshes = [
+      nodes.Object_210,
+      nodes.Object_213,
+      nodes.Object_216,
+      nodes.Object_219,
+      nodes.Object_222,
+      nodes.Object_225,
+      nodes.Object_228,
+      nodes.Object_231,
+    ]
+
+    // Create individual blink intervals for each screen
+    screenMeshes.forEach((mesh, index) => {
+      if (mesh) {
+        const randomInterval = Math.random() * 2500 + 1500
+        
+        const interval = setInterval(() => {
+          setBlinkState((prev) => ({
+            ...prev,
+            [index]: Math.random() > 0.5,
+          }))
+        }, randomInterval)
+
+        intervalsRef.current[index] = interval
+      }
+    })
+
+    return () => {
+      // Clear all intervals on cleanup
+      Object.values(intervalsRef.current).forEach((interval) => clearInterval(interval))
+      intervalsRef.current = {}
+    }
+  }, [nodes, materials])
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setBlinkState({})
+    }, Math.random() * 100 + 100)
+
+    return () => clearTimeout(timeout)
+  }, [blinkState])
+
   return (
     <group {...props} dispose={null}>
       <group position={[0.27, 1.529, -2.613]}>
@@ -20,35 +66,35 @@ export function Computers (props) {
       </group>
       <group position={[-1.43, 2.496, -1.8]} rotation={[0, 1.002, 0]}>
         <mesh geometry={nodes.Object_209.geometry} material={materials.Texture} />
-        <mesh geometry={nodes.Object_210.geometry} material={materials.Screen} />
+        <mesh geometry={nodes.Object_210.geometry} material={blinkState[0] ? materials.Screen : materials.Texture} />
       </group>
       <group position={[-2.731, 0.629, -0.522]} rotation={[0, 1.087, 0]}>
         <mesh geometry={nodes.Object_212.geometry} material={materials.Texture} />
-        <mesh geometry={nodes.Object_213.geometry} material={materials.Screen} />
+        <mesh geometry={nodes.Object_213.geometry} material={blinkState[1] ? materials.Screen : materials.Texture} />
       </group>
       <group position={[1.845, 0.377, -1.771]} rotation={[0, -Math.PI / 9, 0]}>
         <mesh geometry={nodes.Object_215.geometry} material={materials.Texture} />
-        <mesh geometry={nodes.Object_216.geometry} material={materials.Screen} />
+        <mesh geometry={nodes.Object_216.geometry} material={blinkState[2] ? materials.Screen : materials.Texture} />
       </group>
       <group position={[3.11, 2.145, -0.18]} rotation={[0, -0.793, 0]} scale={0.81}>
         <mesh geometry={nodes.Object_218.geometry} material={materials.Texture} />
-        <mesh geometry={nodes.Object_219.geometry} material={materials.Screen} />
+        <mesh geometry={nodes.Object_219.geometry} material={blinkState[3] ? materials.Screen : materials.Texture} />
       </group>
       <group position={[-3.417, 3.056, 1.303]} rotation={[0, 1.222, 0]} scale={0.9}>
         <mesh geometry={nodes.Object_221.geometry} material={materials.Texture} />
-        <mesh geometry={nodes.Object_222.geometry} material={materials.Screen} />
+        <mesh geometry={nodes.Object_222.geometry} material={blinkState[4] ? materials.Screen : materials.Texture} />
       </group>
       <group position={[-3.899, 4.287, -2.642]} rotation={[0, 0.539, 0]}>
         <mesh geometry={nodes.Object_224.geometry} material={materials.Texture} />
-        <mesh geometry={nodes.Object_225.geometry} material={materials.Screen} />
+        <mesh geometry={nodes.Object_225.geometry} material={blinkState[5] ? materials.Screen : materials.Texture} />
       </group>
       <group position={[0.992, 4.287, -4.209]} rotation={[0, 0.429, 0]} scale={[-1, 1, 1]}>
         <mesh geometry={nodes.Object_227.geometry} material={materials.Texture} />
-        <mesh geometry={nodes.Object_228.geometry} material={materials.Screen} />
+        <mesh geometry={nodes.Object_228.geometry} material={blinkState[6] ? materials.Screen : materials.Texture} />
       </group>
       <group position={[4.683, 4.29, -1.558]} rotation={[0, -Math.PI / 3, 0]}>
         <mesh geometry={nodes.Object_230.geometry} material={materials.Texture} />
-        <mesh geometry={nodes.Object_231.geometry} material={materials.Screen} />
+        <mesh geometry={nodes.Object_231.geometry} material={blinkState[7] ? materials.Screen : materials.Texture} />
       </group>
       <mesh geometry={nodes.Object_4.geometry} material={materials.Texture} position={[0.165, 0.794, -1.972]} rotation={[-0.544, 0.929, -1.119]} scale={0.5} />
       <mesh geometry={nodes.Object_6.geometry} material={materials.Texture} position={[-2.793, 0.27, 1.816]} rotation={[-1.44, 1.219, 1.432]} scale={0.5} />
@@ -156,3 +202,5 @@ export function Computers (props) {
 }
 
 useGLTF.preload('/models/old_computers.glb')
+
+export default Computers;

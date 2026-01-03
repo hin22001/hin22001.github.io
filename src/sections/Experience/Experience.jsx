@@ -1,93 +1,99 @@
-import React from 'react';
-import './Experience.css';
-import { motion } from 'framer-motion';
+import { useRef, useLayoutEffect } from 'react';
+import { Window } from '../../components';
+import { Briefcase, FileText } from 'lucide-react';
+import { EXPERIENCES } from '../../constants';
+import gsap from 'gsap';
 
 const Experience = () => {
-  const experiences = [
-    {
-      title: "Senior Full Stack Developer",
-      company: "TechCorp Solutions",
-      companyLink: "https://techcorp.com",
-      period: "2022 - Present",
-      description: "Leading development of enterprise web applications using React, Node.js, and AWS. Mentoring junior developers and implementing DevOps best practices.",
-      achievements: [
-        "Reduced application load time by 40% through optimization",
-        "Led a team of 5 developers on multiple projects",
-        "Implemented CI/CD pipelines reducing deployment time by 60%"
-      ]
-    },
-    {
-      title: "Full Stack Developer",
-      company: "Digital Innovations Inc",
-      companyLink: "https://digitalinnovations.com",
-      period: "2020 - 2022",
-      description: "Developed and maintained multiple client projects using modern web technologies. Collaborated with design teams to create responsive user interfaces.",
-      achievements: [
-        "Built 15+ responsive web applications",
-        "Integrated third-party APIs and payment systems",
-        "Improved code quality through testing and code reviews"
-      ]
-    }
-  ];
+  const containerRef = useRef(null);
 
-  const cardVariants = {
-    offscreen: {
-      y: 50,
-      opacity: 0
-    },
-    onscreen: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        duration: 1.5
-      }
-    }
-  };
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Window Restore Animation
+      gsap.from(".exp-window", {
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: "top 80%",
+        },
+        scale: 0.1,
+        y: 100,
+        opacity: 0,
+        transformOrigin: "bottom center",
+        duration: 0.6,
+        ease: "back.out(1.5)"
+      });
+
+      // Experience items
+      const items = gsap.utils.toArray(".exp-item");
+      items.forEach((item, i) => {
+        gsap.from(item, {
+          scrollTrigger: {
+            trigger: item,
+            start: "top 95%",
+          },
+          x: -20,
+          opacity: 0,
+          duration: 0.4,
+          delay: i * 0.1
+        });
+      });
+
+      // End log pulse trigger
+      gsap.from(".end-log", {
+        scrollTrigger: {
+          trigger: ".end-log",
+          start: "top 95%",
+        },
+        opacity: 0,
+        duration: 0.5,
+        repeat: 3, 
+        yoyo: true
+      });
+
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
-    <section>
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
-        className="experience-header"
-      >
-        <h2>Professional Experience</h2>
-        <p className="subtitle">A journey of continuous learning and impactful contributions</p>
-      </motion.div>
-      <div className="timeline">
-        {experiences.map((exp, index) => (
-          <motion.div
-            key={index}
-            className={`experience-card ${index % 2 === 0 ? 'left' : 'right'}`}
-            initial="offscreen"
-            whileInView="onscreen"
-            viewport={{ once: true, amount: 0.8 }}
-            variants={cardVariants}
-          >
-            <div className="experience-content">
-              <div className="role-header">
-                <h3>{exp.title}</h3>
-                <span className="period">{exp.period}</span>
-              </div>
-              <a href={exp.companyLink} className="company-name" target="_blank" rel="noopener noreferrer">
-                {exp.company}
-              </a>
-              <p className="description">{exp.description}</p>
-              <div className="achievements">
-                <ul>
-                  {exp.achievements.map((achievement, idx) => (
-                    <li key={idx} className="achievement-item">
-                      {achievement}
+    <section className="mb-24" ref={containerRef}>
+      <div className="exp-window origin-bottom">
+        <Window title="C:\USERS\RYAN\WORK_HISTORY.LOG" variant="terminal" icon={<Briefcase size={16} />}>
+          <div className="space-y-8">
+            {EXPERIENCES.map((exp) => (
+              <div key={exp.id} className="exp-item relative pl-6 md:pl-8 border-l-2 border-green-700">
+                <div className="absolute -left-[9px] top-0 w-4 h-4 bg-green-900 border-2 border-green-500 rounded-full"></div>
+                
+                <div className="flex flex-col md:flex-row md:items-center justify-between mb-2">
+                  <h3 className="text-xl font-bold text-green-300 uppercase">
+                    {exp.role}
+                  </h3>
+                  <span className="text-green-600 font-bold bg-green-900/30 px-2 py-1 text-sm border border-green-800">
+                    [{exp.period}]
+                  </span>
+                </div>
+                
+                <div className="text-green-500 mb-2 flex items-center gap-2">
+                  <FileText size={14} />
+                  <span className="underline decoration-dotted">{exp.company}</span>
+                </div>
+                
+                <ul className="list-none space-y-1 mt-2 text-green-400/90 text-sm md:text-base">
+                  {exp.highlights.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-green-600 select-none">&gt;</span>
+                      {item}
                     </li>
                   ))}
                 </ul>
               </div>
+            ))}
+            
+            <div className="end-log text-center pt-4 border-t border-green-800/50">
+              <span className="animate-pulse text-green-700">END OF LOG_FILE</span>
             </div>
-          </motion.div>
-        ))}
+          </div>
+        </Window>
       </div>
     </section>
   );
