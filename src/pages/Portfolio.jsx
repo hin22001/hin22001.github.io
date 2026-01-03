@@ -101,7 +101,7 @@ const Portfolio = () => {
               
             <div className="flex gap-4 text-sm font-bold">
               <a href="#" className="hover:text-blue-700 underline">HOME</a>
-              <a href="#tutoring-section" className="hover:text-blue-700 underline">TRAINING</a>
+              {/* <a href="#tutoring-section" className="hover:text-blue-700 underline">TRAINING</a> */}
               <div className="hidden md:block border-l border-gray-600 mx-1"></div>
               <div 
                   className="flex items-center gap-1 text-red-700 cursor-pointer hover:bg-gray-300 px-1 disabled:opacity-50"
