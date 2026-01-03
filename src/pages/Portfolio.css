@@ -1,0 +1,75 @@
+:root {
+  --retro-teal: #66c9b1;
+  --crt-scanline: rgba(0, 0, 0, 0.1);
+}
+
+.portfolio {
+  background-color: var(--retro-teal);
+  font-family: 'VT323', monospace;
+  overflow-x: hidden;
+  margin: 0;
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewport='0 0 20 20' style='fill:black;font-size:16px;'><text y='18'>█</text></svg>") 8 8, auto;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 16px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+  border-left: 2px solid #666;
+}
+::-webkit-scrollbar-thumb {
+  background: #66c9b1;
+  border: 2px solid #000;
+  box-shadow: inset 2px 2px 0px rgba(255,255,255,0.5), inset -2px -2px 0px rgba(0,0,0,0.5);
+}
+
+/* CRT Effect Layer */
+.scanlines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.1) 50%,
+    rgba(0, 0, 0, 0.1)
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.6;
+}
+
+.flicker {
+  animation: flicker 0.15s infinite;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.02);
+  pointer-events: none;
+  z-index: 9998;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.9; }
+  50% { opacity: 1.0; }
+  100% { opacity: 0.9; }
+}
+
+/* Retro Utilities */
+.text-shadow-retro {
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+}
+.box-shadow-hard {
+  box-shadow: 8px 8px 0px 0px rgba(0,0,0,0.5);
+}
+.box-shadow-inset {
+  box-shadow: inset 4px 4px 0px 0px rgba(0,0,0,0.5);
+}
