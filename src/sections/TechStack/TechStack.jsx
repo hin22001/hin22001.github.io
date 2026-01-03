@@ -9,46 +9,41 @@ const TechStack = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Window Restore Animation
-      gsap.from(".tech-window", {
+      const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
         },
+      });
+
+      // Window Restore Animation
+      timeline.from(".tech-window", {
         scale: 0.1,
         y: 100,
         opacity: 0,
         transformOrigin: "bottom center",
         duration: 0.6,
         ease: "back.out(1.5)"
-      });
+      }, 0);
 
       // Columns appear
-      gsap.from(".skill-col", {
-        scrollTrigger: {
-          trigger: ".skills-grid",
-          start: "top 80%",
-        },
+      timeline.from(".skill-col", {
         scaleY: 0,
         transformOrigin: "top",
         opacity: 0,
         duration: 0.4,
         stagger: 0.15,
         delay: 0.3
-      });
+      }, 0.3);
 
       // Files appear
-      gsap.from(".file-item", {
-        scrollTrigger: {
-          trigger: ".files-container",
-          start: "top 90%",
-        },
+      timeline.from(".file-item", {
         x: -20,
         opacity: 0,
         stagger: 0.1,
         duration: 0.3,
         delay: 0.6
-      });
+      }, 0.6);
 
     }, containerRef);
     return () => ctx.revert();

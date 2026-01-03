@@ -43,12 +43,7 @@ const Hero = ({ onNavigateToTutoring }) => {
   useLayoutEffect(() => {
     // Window Restore Animation
     const ctx = gsap.context(() => {
-      gsap.to(".hero-window", {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom", 
-          scrub: true,
-        },
+      gsap.from(".hero-window", {
         scale: 0.1,
         y: 100,
         opacity: 0,

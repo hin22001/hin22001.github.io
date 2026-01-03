@@ -9,46 +9,41 @@ const Experience = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Window Restore Animation
-      gsap.from(".exp-window", {
+
+      const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
-        },
+        }
+      });
+      // Window Restore Animation
+      timeline.from(".exp-window", {
         scale: 0.1,
         y: 100,
         opacity: 0,
         transformOrigin: "bottom center",
         duration: 0.6,
         ease: "back.out(1.5)"
-      });
+      }, 0);
 
       // Experience items
       const items = gsap.utils.toArray(".exp-item");
       items.forEach((item, i) => {
-        gsap.from(item, {
-          scrollTrigger: {
-            trigger: item,
-            start: "top 95%",
-          },
+        timeline.from(item, {
           x: -20,
           opacity: 0,
           duration: 0.4,
           delay: i * 0.1
         });
-      });
+      }, 0.3);
 
       // End log pulse trigger
-      gsap.from(".end-log", {
-        scrollTrigger: {
-          trigger: ".end-log",
-          start: "top 95%",
-        },
+      timeline.from(".end-log", {
         opacity: 0,
         duration: 0.5,
-        repeat: 3, 
+        repeat: 12, 
         yoyo: true
-      });
+      }, 1);
 
     }, containerRef);
 

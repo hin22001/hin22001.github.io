@@ -9,32 +9,31 @@ const Project = () => {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Window Restore Animation
-      gsap.from(".proj-window", {
+      const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
         },
+      });
+
+      // Window Restore Animation
+      timeline.from(".proj-window", {
         scale: 0.1,
         y: 100,
         opacity: 0,
         transformOrigin: "bottom center",
         duration: 0.6,
         ease: "back.out(1.5)"
-      });
+      }, 0);
 
       // Stagger Cards
-      gsap.from(".project-card", {
-        scrollTrigger: {
-          trigger: ".grid-container",
-          start: "top 75%",
-        },
+      timeline.from(".project-card", {
         y: 30,
         opacity: 0,
         duration: 0.5,
         stagger: 0.1,
         delay: 0.3
-      });
+      }, 0.3);
 
     }, containerRef);
     return () => ctx.revert();
