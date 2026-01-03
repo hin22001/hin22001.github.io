@@ -25,7 +25,7 @@ const Portfolio = () => {
 						<div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-2 py-0.5 text-lg font-bold italic tracking-widest border border-black shadow-[1px_1px_0px_white]">
 							RYAN_OS
 						</div>
-						<span className="hidden md:block text-xs uppercase font-bold text-gray-600">v3.1.4 (Build 2024)</span>
+						<span className="hidden md:block text-xs uppercase font-bold text-gray-600">v1.0.0 (Build 2026)</span>
 					</div>
 					
 					<div className="flex gap-4 text-sm font-bold">
@@ -55,7 +55,7 @@ const Portfolio = () => {
 
 					{/* Footer */}
 					<footer className="text-center py-8 text-black/60 text-sm font-bold">
-						<p>© 2024 RYAN. SYS_ADMIN PERMISSIONS REQUIRED.</p>
+						<p>© 2026 RYAN. SYS_ADMIN PERMISSIONS REQUIRED.</p>
 						<p className="mt-1 text-xs">DESIGNED WITH &lt;3 IN REACT</p>
 					</footer>
 

@@ -74,11 +74,11 @@ const TechStack = () => {
           </div>
           
           <div className="files-container mt-8 border-t-2 border-dashed border-green-800 pt-4 font-mono text-xs text-green-600">
-            <p>CERTIFICATES FOUND: 3</p>
+            <p>CERTIFICATES FOUND: 0</p>
             <div className="flex flex-col md:flex-row gap-4 mt-2 text-green-400">
-              <span className="file-item">&gt; AWS_CERTIFIED_SOLUTIONS_ARCHITECT.PDF</span>
+              {/* <span className="file-item">&gt; AWS_CERTIFIED_SOLUTIONS_ARCHITECT.PDF</span>
               <span className="file-item">&gt; CKA_KUBERNETES_ADMIN.PDF</span>
-              <span className="file-item">&gt; RED_HAT_CERTIFIED_ENGINEER.PDF</span>
+              <span className="file-item">&gt; RED_HAT_CERTIFIED_ENGINEER.PDF</span> */}
             </div>
           </div>
         </Window>
