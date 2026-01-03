@@ -11,6 +11,29 @@ gsap.registerPlugin(ScrollTrigger);
 const Portfolio = () => {
   const [isShuttingDown, setIsShuttingDown] = useState(false);
 
+  useEffect(() => {
+    // Refresh ScrollTrigger on component mount
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+
+    // Listen to scroll events and refresh triggers
+    const handleScroll = () => {
+      ScrollTrigger.update();
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('touchmove', handleScroll, { passive: true });
+    window.addEventListener('orientationchange', () => {
+      setTimeout(() => ScrollTrigger.refresh(), 500);
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('touchmove', handleScroll);
+    };
+  }, []);
+
   const scrollToTutoring = () => {
     const element = document.getElementById('tutoring-section');
     if (element) {

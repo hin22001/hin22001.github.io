@@ -5,13 +5,11 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import './Landing.css'
 
-
 const Landing = (props) => {
   
   const { onDistanceReached } = props
   const [showBackdrop, setShowBackdrop] = useState(true);
 
-  // Add: component that runs inside the Canvas to read controls + camera
   const ControlsListener = ({ controlsRef, logOnChange = true, logOnEnd = true }) => {
     const camera = useThree((state) => state.camera);
     const rafRef = useRef(null);
@@ -27,7 +25,6 @@ const Landing = (props) => {
 
       const report = () => {
         const distance = camera.position.distanceTo(controls.target);
-        // replace console.log with any handler you want (state update, callback, etc.)
         if (distance <= 70) {
           setShowBackdrop(false);
         }
@@ -37,7 +34,6 @@ const Landing = (props) => {
       };
 
       const onChange = () => {
-        // throttle to animation frame to avoid spamming
         if (rafRef.current) return;
         rafRef.current = requestAnimationFrame(() => {
           report();
@@ -48,7 +44,6 @@ const Landing = (props) => {
       if (logOnChange) controls.addEventListener('change', onChange);
       if (logOnEnd) controls.addEventListener('end', report);
 
-      // initial report
       report();
 
       return () => {
@@ -61,8 +56,45 @@ const Landing = (props) => {
     return null;
   };
 
-  // create ref and pass it to OrbitControls + ControlsListener
   const controlsRef = useRef();
+  const lastTouchYRef = useRef(0);
+
+  // Handle touch scroll to zoom
+  useEffect(() => {
+    const canvas = document.querySelector('canvas');
+    if (!canvas) return;
+
+    const handleTouchMove = (e) => {
+      const controls = controlsRef?.current;
+      if (!controls) return;
+
+      const currentY = e.touches[0].clientY;
+      const deltaY = lastTouchYRef.current - currentY;
+
+      if (Math.abs(deltaY) > 5) {
+        // Simulate wheel zoom event
+        const zoomSpeed = 0.1;
+        const zoomDelta = deltaY > 0 ? zoomSpeed : -zoomSpeed;
+        
+        controls.dollyOut(1 + zoomDelta);
+        controls.dispatchEvent({ type: 'change' });
+        
+        lastTouchYRef.current = currentY;
+      }
+    };
+
+    const handleTouchStart = (e) => {
+      lastTouchYRef.current = e.touches[0].clientY;
+    };
+
+    canvas.addEventListener('touchstart', handleTouchStart, { passive: true });
+    canvas.addEventListener('touchmove', handleTouchMove, { passive: true });
+
+    return () => {
+      canvas.removeEventListener('touchstart', handleTouchStart);
+      canvas.removeEventListener('touchmove', handleTouchMove);
+    };
+  }, []);
 
   return (
     <>
@@ -89,11 +121,18 @@ const Landing = (props) => {
           enableRotate={false}
           enableZoom={true}
           enablePan={false}
+          enableDamping={true}
+          dampingFactor={0.05}
+          autoRotate={false}
           maxDistance={100}
           minDistance={1}
           zoomSpeed={3}
           minPolarAngle={Math.PI / 5}
           maxPolarAngle={Math.PI / 2}
+          touches={{
+            ONE: 1,
+            TWO: 2
+          }}
         />
         <ControlsListener controlsRef={controlsRef} onDistanceReached={onDistanceReached} />
         <group position={[0, -2.5, 0]} rotation={[0, -Math.PI / 30, 0]}>
