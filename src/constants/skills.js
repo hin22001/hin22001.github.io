@@ -1,15 +1,15 @@
 const SKILLS = [
   {
-    category: "Cloud & DevOps",
-    items: ["AWS", "Azure", "Docker", "Kubernetes", "Terraform", "Jenkins", "GitHub Actions"]
+    category: "DevOps & SRE",
+    items: ["Docker", "Kubernetes", "Terraform", "Jenkins", "GitHub Actions", "Prometheus", "Grafana", "ArgoCD", "Helm", "Ansible", "Kustomize", "Dynatrace", "ELK Stack"]
   },
   {
-    category: "Languages",
-    items: ["Python", "Bash/Shell", "TypeScript", "Go", "Rust", "SQL"]
+    category: "Languages & Frameworks",
+    items: ["Python", "Bash/Shell", "TypeScript", "Javascript", "React", "NodeJS", "Java", "Springboot", "SQL", "KQL"]
   },
   {
-    category: "Tools & OS",
-    items: ["Linux (RHEL/Ubuntu)", "Git", "Prometheus", "Grafana", "Nginx", "Vim"]
+    category: "Cloud & Tools",
+    items: ["AWS", "Azure", "Git", "Nginx", "Vim", "PowerBI"]
   }
 ];
 
