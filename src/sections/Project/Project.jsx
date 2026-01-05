@@ -4,10 +4,12 @@ import { Folder, HardDrive } from 'lucide-react';
 import { PROJECTS } from '../../constants';
 import gsap from 'gsap';
 
-const Project = () => {
+const Project = ({ isMobile }) => {
   const containerRef = useRef(null);
 
   useLayoutEffect(() => {
+    if (isMobile) return;
+
     const ctx = gsap.context(() => {
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -37,7 +39,7 @@ const Project = () => {
 
     }, containerRef);
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <section className="mb-24" ref={containerRef}>

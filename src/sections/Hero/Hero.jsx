@@ -4,7 +4,7 @@ import Typed from 'typed.js'
 import { Terminal, ArrowDownCircle } from 'lucide-react';
 import gsap from 'gsap';
 
-const Hero = ({ onNavigateToTutoring }) => {
+const Hero = ({ onNavigateToTutoring, isMobile }) => {
   const [text, setText] = useState('');
   const fullText = "HELLO, I'M ";
   const containerRef = useRef(null);

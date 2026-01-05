@@ -10,28 +10,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Portfolio = () => {
   const [isShuttingDown, setIsShuttingDown] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1080);
 
   useEffect(() => {
-    // Refresh ScrollTrigger on component mount
-    setTimeout(() => {
-      ScrollTrigger.refresh();
-    }, 100);
-
-    // Listen to scroll events and refresh triggers
-    const handleScroll = () => {
-      ScrollTrigger.update();
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1080);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('touchmove', handleScroll, { passive: true });
-    window.addEventListener('orientationchange', () => {
-      setTimeout(() => ScrollTrigger.refresh(), 500);
-    });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('touchmove', handleScroll);
-    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const scrollToTutoring = () => {
@@ -141,15 +128,15 @@ const Portfolio = () => {
           <main className="max-w-5xl mx-auto px-4 pt-10 relative z-10">
               
             {/* Components Stack */}
-            <Hero onNavigateToTutoring={scrollToTutoring} />
+            <Hero onNavigateToTutoring={scrollToTutoring} isMobile={isMobile} />
             
             {/* <Tutoring /> */}
             
-            <Experience />
+            <Experience isMobile={isMobile} />
             
-            <Project />
+            <Project isMobile={isMobile} />
             
-            <TechStack />
+            <TechStack isMobile={isMobile} />
 
             {/* Footer */}
             <footer className="text-center py-8 text-black/60 text-sm font-bold">

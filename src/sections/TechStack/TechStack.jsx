@@ -4,10 +4,11 @@ import { Cpu } from 'lucide-react';
 import { SKILLS } from '../../constants';
 import gsap from 'gsap';
 
-const TechStack = () => {
+const TechStack = ({ isMobile }) => {
   const containerRef = useRef(null);
 
   useLayoutEffect(() => {
+    if (isMobile) return;
     const ctx = gsap.context(() => {
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -47,7 +48,7 @@ const TechStack = () => {
 
     }, containerRef);
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <section className="mb-12" ref={containerRef}>

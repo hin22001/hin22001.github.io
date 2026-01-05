@@ -4,10 +4,11 @@ import { Briefcase, FileText } from 'lucide-react';
 import { EXPERIENCES } from '../../constants';
 import gsap from 'gsap';
 
-const Experience = () => {
+const Experience = ({ isMobile }) => {
   const containerRef = useRef(null);
 
   useLayoutEffect(() => {
+    if (isMobile) return;
     const ctx = gsap.context(() => {
 
       const timeline = gsap.timeline({
@@ -48,7 +49,7 @@ const Experience = () => {
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isMobile]);
 
   return (
     <section className="mb-24" ref={containerRef}>
