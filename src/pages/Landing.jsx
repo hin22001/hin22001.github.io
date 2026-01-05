@@ -25,7 +25,8 @@ const Landing = (props) => {
 
       const report = () => {
         const distance = camera.position.distanceTo(controls.target);
-        if (distance <= 70) {
+        console.log(`Distance to target: ${distance.toFixed(2)}`);
+        if (distance <= 85) {
           setShowBackdrop(false);
         }
         if (distance <= 5 && onDistanceReached) {
