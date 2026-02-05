@@ -10,7 +10,7 @@ export default defineConfig({
     tailwindcss(),
     viteStaticCopy({
       targets: [
-        { src: '*.html', dest: '' },        // copies to dist/
+        { src: 'html/*.html', dest: '' },        // copies to dist/
       ],
     }),
 
