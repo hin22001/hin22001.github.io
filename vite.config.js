@@ -7,6 +7,12 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    viteStaticCopy({
+      targets: [
+        { src: '*.html', dest: '' },        // copies to dist/
+      ],
+    }),
+
   ],
   resolve: {
     alias: [
